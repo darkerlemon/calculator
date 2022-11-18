@@ -31,6 +31,7 @@ const adder = document.querySelector('#add');
 const equal = document.querySelector('#equals');
 
 let displayValue = '';
+let firstValue = '';
 let secondValue = '';
 function numberBtnClicked(e) { 
     input.textContent += e.target.textContent;
@@ -41,9 +42,15 @@ function numberBtnClicked(e) {
 
 function operateBtnClicked(e) {
     if (e.target === adder) {
-    input.textContent += '+'}
+    input.textContent += '+';
+}
     else if (e.target === equal) {
-        resultAdd = operate(displayValue, add, displayValue);
+        let secondValue = parseFloat(input.textContent.split('+').pop());
+        let firstValue = parseFloat(input.textContent.split('+')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+
+        resultAdd = operate(firstValue, add, secondValue);
      console.log(resultAdd);
         input.textContent = resultAdd;
         return resultAdd;
