@@ -13,10 +13,13 @@ function multiply(a, b) {
 function divide(a, b) {
     return Math.round(((a / b) + Number.EPSILON) * 100) / 100;
 };
+function remainderF(a, b) {
+    return Math.round(((a % b) + Number.EPSILON) * 100) / 100;
+};
 
 function operate (a, op, b) {
     return op(a, b);
-}
+};
 
 const input = document.querySelector('.input');
 const container = document.querySelector('.container');
@@ -28,6 +31,9 @@ const subtracter = document.querySelector('#subtract');
 const multiplier = document.querySelector('#multiply');
 const divider = document.querySelector('#divide');
 const clear = document.querySelector('#clear');
+const allClear = document.querySelector('allClear');
+const decimal = document.querySelector('#decimal');
+const remainder = document.querySelector('#remainder');
 
 let displayValue = '';
 let firstValue = '';
@@ -48,6 +54,12 @@ function operateBtnClicked(e) {
     input.textContent += 'x';
 } else if (e.target === divider) {
     input.textContent += '/';
+} else if (e.target === remainder) {
+    input.textContent += '%';
+} else if (e.target === decimal) {
+    input.textContent += '.';
+} else if (e.target === clear) {
+    input.textContent = input.textContent.slice(0, -1);
 } else if (e.target === equal && input.textContent.includes('+')) {
         let secondValue = parseFloat(input.textContent.split('+').pop());
         let firstValue = parseFloat(input.textContent.split('+')[0]);
@@ -58,7 +70,7 @@ function operateBtnClicked(e) {
      console.log(resultAdd);
         input.textContent = resultAdd;
         return resultAdd;
-    }   else if (e.target === equal && input.textContent.includes('-')) {
+}   else if (e.target === equal && input.textContent.includes('-')) {
         let secondValue = parseFloat(input.textContent.split('-').pop());
         let firstValue = parseFloat(input.textContent.split('-')[0]);
         console.log(firstValue);
@@ -68,7 +80,7 @@ function operateBtnClicked(e) {
      console.log(resultAdd);
         input.textContent = resultAdd;
         return resultAdd;
-    }   else if (e.target === equal && input.textContent.includes('x')) {
+}   else if (e.target === equal && input.textContent.includes('x')) {
         let secondValue = parseFloat(input.textContent.split('x').pop());
         let firstValue = parseFloat(input.textContent.split('x')[0]);
         console.log(firstValue);
@@ -78,7 +90,7 @@ function operateBtnClicked(e) {
      console.log(resultAdd);
         input.textContent = resultAdd;
         return resultAdd;
-    }   else if (e.target === equal && input.textContent.includes('/')) {
+}   else if (e.target === equal && input.textContent.includes('/')) {
         let secondValue = parseFloat(input.textContent.split('/').pop());
         let firstValue = parseFloat(input.textContent.split('/')[0]);
         console.log(firstValue);
@@ -91,10 +103,19 @@ function operateBtnClicked(e) {
      console.log(resultAdd);
         input.textContent = resultAdd;
         return resultAdd;}
-    } else if (e.target === clear) {
+}   else if (e.target === equal && input.textContent.includes('%')) {
+        let secondValue = parseFloat(input.textContent.split('%').pop());
+        let firstValue = parseFloat(input.textContent.split('%')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+
+        resultAdd = operate(firstValue, remainderF, secondValue);
+     console.log(resultAdd);
+        input.textContent = resultAdd;
+        return resultAdd;
+} else if (e.target === allClear) {
         window.location.reload();
-    }
-}
+}};
 
 
 operateBtn.forEach(function(button) {
