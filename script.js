@@ -47,18 +47,314 @@ function numberBtnClicked(e) {
 
 
 function operateBtnClicked(e) {
-    if (e.target === adder) {
-    input.textContent += '+';
-} else if (e.target === minus) {
-    input.textContent = parseFloat(input.textContent) * -1;
-} else if (e.target === subtracter) {
-    input.textContent += '–';
+    if (e.target === adder) { 
+       if (input.textContent.includes('+')) {
+         let secondValue = parseFloat(input.textContent.split('+').pop());
+         let firstValue = parseFloat(input.textContent.split('+')[0]);
+         console.log(firstValue);
+         console.log(secondValue);
+
+        resultAdd = operate(firstValue, add, secondValue) + '+';
+     console.log(resultAdd);
+        input.textContent = resultAdd;
+        return resultAdd;
+    } else if (input.textContent.includes('–')) {
+        let secondValue = parseFloat(input.textContent.split('–').pop());
+        let firstValue = parseFloat(input.textContent.split('–')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+        
+        resultAdd = operate(firstValue, subtract, secondValue) + '+';
+     console.log(resultAdd);
+        input.textContent = resultAdd;
+        return resultAdd;
+    } else if (input.textContent.includes('x')) {
+        let secondValue = parseFloat(input.textContent.split('x').pop());
+        let firstValue = parseFloat(input.textContent.split('x')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+
+        resultAdd = operate(firstValue, multiply, secondValue) + '+';
+     console.log(resultAdd);
+        input.textContent = resultAdd;
+        return resultAdd;
+    } else if (input.textContent.includes('/')) {
+        let secondValue = parseFloat(input.textContent.split('/').pop());
+        let firstValue = parseFloat(input.textContent.split('/')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+        if ( secondValue == 0){
+            alert('that is naughty, it is undefined');
+            window.location.reload();
+        } else {
+        resultAdd = operate(firstValue, divide, secondValue) + '+';
+     console.log(resultAdd);
+        input.textContent = resultAdd;
+        return resultAdd;}
+    } else if (input.textContent.includes('%')) {
+        let secondValue = parseFloat(input.textContent.split('%').pop());
+        let firstValue = parseFloat(input.textContent.split('%')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+
+        resultAdd = operate(firstValue, remainderF, secondValue) + '+';
+     console.log(resultAdd);
+        input.textContent = resultAdd;
+        return resultAdd;
+    } else {
+    input.textContent += '+';}
+} else if (e.target === minus) { 
+    if (input.textContent.includes('+')) {
+    console.log(parseFloat(input.textContent.split('+').pop()));
+    let secondValue = input.textContent.split('+').pop(); 
+    secondValue *= -1;
+    input.textContent = parseFloat(input.textContent.split('+')[0]) + '+' + parseFloat(secondValue);
+   } else if (input.textContent.includes('–')) {
+    console.log(parseFloat(input.textContent.split('–').pop()));
+    let secondValue = input.textContent.split('–').pop(); 
+    secondValue *= -1;
+    input.textContent = parseFloat(input.textContent.split('–')[0]) + '–' + parseFloat(secondValue);
+   } else if (input.textContent.includes('x')) {
+    console.log(parseFloat(input.textContent.split('x').pop()));
+    let secondValue = input.textContent.split('x').pop(); 
+    secondValue *= -1;
+    input.textContent = parseFloat(input.textContent.split('x')[0]) + 'x' + parseFloat(secondValue);
+   } else if (input.textContent.includes('/')) {
+    console.log(parseFloat(input.textContent.split('/').pop()));
+    let secondValue = input.textContent.split('/').pop(); 
+    secondValue *= -1;
+    input.textContent = parseFloat(input.textContent.split('/')[0]) + '/' + parseFloat(secondValue);
+   } else if (input.textContent.includes('%')) {
+    console.log(parseFloat(input.textContent.split('%').pop()));
+    let secondValue = input.textContent.split('%').pop(); 
+    secondValue *= -1;
+    input.textContent = parseFloat(input.textContent.split('%')[0]) + '%' + parseFloat(secondValue);
+   } else {
+    input.textContent = parseFloat(input.textContent) * -1;}
+} else if (e.target === subtracter) {  
+    if (input.textContent.includes('+')) {
+      let secondValue = parseFloat(input.textContent.split('+').pop());
+      let firstValue = parseFloat(input.textContent.split('+')[0]);
+      console.log(firstValue);
+      console.log(secondValue);
+
+     resultAdd = operate(firstValue, add, secondValue) + '–';
+  console.log(resultAdd);
+     input.textContent = resultAdd;
+     return resultAdd;
+ } else if (input.textContent.includes('–')) {
+     let secondValue = parseFloat(input.textContent.split('–').pop());
+     let firstValue = parseFloat(input.textContent.split('–')[0]);
+     console.log(firstValue);
+     console.log(secondValue);
+     
+     resultAdd = operate(firstValue, subtract, secondValue) + '–';
+  console.log(resultAdd);
+     input.textContent = resultAdd;
+     return resultAdd;
+ } else if (input.textContent.includes('x')) {
+     let secondValue = parseFloat(input.textContent.split('x').pop());
+     let firstValue = parseFloat(input.textContent.split('x')[0]);
+     console.log(firstValue);
+     console.log(secondValue);
+
+     resultAdd = operate(firstValue, multiply, secondValue) + '–';
+  console.log(resultAdd);
+     input.textContent = resultAdd;
+     return resultAdd;
+ } else if (input.textContent.includes('/')) {
+     let secondValue = parseFloat(input.textContent.split('/').pop());
+     let firstValue = parseFloat(input.textContent.split('/')[0]);
+     console.log(firstValue);
+     console.log(secondValue);
+     if ( secondValue == 0){
+         alert('that is naughty, it is undefined');
+         window.location.reload();
+     } else {
+     resultAdd = operate(firstValue, divide, secondValue) + '–';
+  console.log(resultAdd);
+     input.textContent = resultAdd;
+     return resultAdd;}
+ } else if (input.textContent.includes('%')) {
+     let secondValue = parseFloat(input.textContent.split('%').pop());
+     let firstValue = parseFloat(input.textContent.split('%')[0]);
+     console.log(firstValue);
+     console.log(secondValue);
+
+     resultAdd = operate(firstValue, remainderF, secondValue) + '–';
+  console.log(resultAdd);
+     input.textContent = resultAdd;
+     return resultAdd;
+ } else {
+    input.textContent += '–';}
 } else if (e.target === multiplier) {
-    input.textContent += 'x';
+    if (input.textContent.includes('+')) {
+        let secondValue = parseFloat(input.textContent.split('+').pop());
+        let firstValue = parseFloat(input.textContent.split('+')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+  
+       resultAdd = operate(firstValue, add, secondValue) + 'x';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else if (input.textContent.includes('–')) {
+       let secondValue = parseFloat(input.textContent.split('–').pop());
+       let firstValue = parseFloat(input.textContent.split('–')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+       
+       resultAdd = operate(firstValue, subtract, secondValue) + 'x';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else if (input.textContent.includes('x')) {
+       let secondValue = parseFloat(input.textContent.split('x').pop());
+       let firstValue = parseFloat(input.textContent.split('x')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+  
+       resultAdd = operate(firstValue, multiply, secondValue) + 'x';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else if (input.textContent.includes('/')) {
+       let secondValue = parseFloat(input.textContent.split('/').pop());
+       let firstValue = parseFloat(input.textContent.split('/')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+       if ( secondValue == 0){
+           alert('that is naughty, it is undefined');
+           window.location.reload();
+       } else {
+       resultAdd = operate(firstValue, divide, secondValue) + 'x';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;}
+   } else if (input.textContent.includes('%')) {
+       let secondValue = parseFloat(input.textContent.split('%').pop());
+       let firstValue = parseFloat(input.textContent.split('%')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+  
+       resultAdd = operate(firstValue, remainderF, secondValue) + 'x';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else {
+    input.textContent += 'x';}
 } else if (e.target === divider) {
-    input.textContent += '/';
+    if (input.textContent.includes('+')) {
+        let secondValue = parseFloat(input.textContent.split('+').pop());
+        let firstValue = parseFloat(input.textContent.split('+')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+  
+       resultAdd = operate(firstValue, add, secondValue) + '/';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else if (input.textContent.includes('–')) {
+       let secondValue = parseFloat(input.textContent.split('–').pop());
+       let firstValue = parseFloat(input.textContent.split('–')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+       
+       resultAdd = operate(firstValue, subtract, secondValue) + '/';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else if (input.textContent.includes('x')) {
+       let secondValue = parseFloat(input.textContent.split('x').pop());
+       let firstValue = parseFloat(input.textContent.split('x')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+  
+       resultAdd = operate(firstValue, multiply, secondValue) + '/';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else if (input.textContent.includes('/')) {
+       let secondValue = parseFloat(input.textContent.split('/').pop());
+       let firstValue = parseFloat(input.textContent.split('/')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+       if ( secondValue == 0){
+           alert('that is naughty, it is undefined');
+           window.location.reload();
+       } else {
+       resultAdd = operate(firstValue, divide, secondValue) + '/';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;}
+   } else if (input.textContent.includes('%')) {
+       let secondValue = parseFloat(input.textContent.split('%').pop());
+       let firstValue = parseFloat(input.textContent.split('%')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+  
+       resultAdd = operate(firstValue, remainderF, secondValue) + '/';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else {
+    input.textContent += '/';}
 } else if (e.target === remainder) {
-    input.textContent += '%';
+    if (input.textContent.includes('+')) {
+        let secondValue = parseFloat(input.textContent.split('+').pop());
+        let firstValue = parseFloat(input.textContent.split('+')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+  
+       resultAdd = operate(firstValue, add, secondValue) + '%';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else if (input.textContent.includes('–')) {
+       let secondValue = parseFloat(input.textContent.split('–').pop());
+       let firstValue = parseFloat(input.textContent.split('–')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+       
+       resultAdd = operate(firstValue, subtract, secondValue) + '%';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else if (input.textContent.includes('x')) {
+       let secondValue = parseFloat(input.textContent.split('x').pop());
+       let firstValue = parseFloat(input.textContent.split('x')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+  
+       resultAdd = operate(firstValue, multiply, secondValue) + '%';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else if (input.textContent.includes('/')) {
+       let secondValue = parseFloat(input.textContent.split('/').pop());
+       let firstValue = parseFloat(input.textContent.split('/')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+       if ( secondValue == 0){
+           alert('that is naughty, it is undefined');
+           window.location.reload();
+       } else {
+       resultAdd = operate(firstValue, divide, secondValue) + '%';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;}
+   } else if (input.textContent.includes('%')) {
+       let secondValue = parseFloat(input.textContent.split('%').pop());
+       let firstValue = parseFloat(input.textContent.split('%')[0]);
+       console.log(firstValue);
+       console.log(secondValue);
+  
+       resultAdd = operate(firstValue, remainderF, secondValue) + '%';
+    console.log(resultAdd);
+       input.textContent = resultAdd;
+       return resultAdd;
+   } else {
+    input.textContent += '%';}
 } else if (e.target === decimal) {
     input.textContent += '.';
 } else if (e.target === clear) {
