@@ -34,6 +34,7 @@ const clear = document.querySelector('#clear');
 const allClear = document.querySelector('#allClear');
 const decimal = document.querySelector('#decimal');
 const remainder = document.querySelector('#remainder');
+const minus = document.querySelector('#minus');
 
 let displayValue = '';
 let firstValue = '';
@@ -48,8 +49,10 @@ function numberBtnClicked(e) {
 function operateBtnClicked(e) {
     if (e.target === adder) {
     input.textContent += '+';
+} else if (e.target === minus) {
+    input.textContent = parseFloat(input.textContent) * -1;
 } else if (e.target === subtracter) {
-    input.textContent += '-';
+    input.textContent += '–';
 } else if (e.target === multiplier) {
     input.textContent += 'x';
 } else if (e.target === divider) {
@@ -70,12 +73,12 @@ function operateBtnClicked(e) {
      console.log(resultAdd);
         input.textContent = resultAdd;
         return resultAdd;
-}   else if (e.target === equal && input.textContent.includes('-')) {
-        let secondValue = parseFloat(input.textContent.split('-').pop());
-        let firstValue = parseFloat(input.textContent.split('-')[0]);
+}   else if (e.target === equal && input.textContent.includes('–')) {
+        let secondValue = parseFloat(input.textContent.split('–').pop());
+        let firstValue = parseFloat(input.textContent.split('–')[0]);
         console.log(firstValue);
         console.log(secondValue);
-
+        
         resultAdd = operate(firstValue, subtract, secondValue);
      console.log(resultAdd);
         input.textContent = resultAdd;
