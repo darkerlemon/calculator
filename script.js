@@ -1,27 +1,22 @@
 function add(a, b) {
-    return a + b;
+    return Math.round(((a + b) + Number.EPSILON) * 100) / 100;
 };
-console.log(add(5, 6));
 
 function subtract(a, b) {
-    return a - b;
+    return Math.round(((a - b) + Number.EPSILON) * 100) / 100;
 };
-console.log(subtract(6, 5));
 
 function multiply(a, b) {
-    return a * b;
+    return Math.round(((a * b) + Number.EPSILON) * 100) / 100;
 };
-console.log(multiply(5, 6));
 
 function divide(a, b) {
-    return a / b;
+    return Math.round(((a / b) + Number.EPSILON) * 100) / 100;
 };
-console.log(divide(5, 6));
 
 function operate (a, op, b) {
     return op(a, b);
 }
-console.log(operate(4, add, 7));
 
 const input = document.querySelector('.input');
 const container = document.querySelector('.container');
@@ -29,6 +24,10 @@ const numberBtn = document.querySelectorAll('.numberBtn');
 const operateBtn = document.querySelectorAll('.operateBtn');
 const adder = document.querySelector('#add');
 const equal = document.querySelector('#equals');
+const subtracter = document.querySelector('#subtract');
+const multiplier = document.querySelector('#multiply');
+const divider = document.querySelector('#divide');
+const clear = document.querySelector('#clear');
 
 let displayValue = '';
 let firstValue = '';
@@ -43,8 +42,13 @@ function numberBtnClicked(e) {
 function operateBtnClicked(e) {
     if (e.target === adder) {
     input.textContent += '+';
-}
-    else if (e.target === equal) {
+} else if (e.target === subtracter) {
+    input.textContent += '-';
+} else if (e.target === multiplier) {
+    input.textContent += 'x';
+} else if (e.target === divider) {
+    input.textContent += '/';
+} else if (e.target === equal && input.textContent.includes('+')) {
         let secondValue = parseFloat(input.textContent.split('+').pop());
         let firstValue = parseFloat(input.textContent.split('+')[0]);
         console.log(firstValue);
@@ -54,7 +58,42 @@ function operateBtnClicked(e) {
      console.log(resultAdd);
         input.textContent = resultAdd;
         return resultAdd;
-    } 
+    }   else if (e.target === equal && input.textContent.includes('-')) {
+        let secondValue = parseFloat(input.textContent.split('-').pop());
+        let firstValue = parseFloat(input.textContent.split('-')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+
+        resultAdd = operate(firstValue, subtract, secondValue);
+     console.log(resultAdd);
+        input.textContent = resultAdd;
+        return resultAdd;
+    }   else if (e.target === equal && input.textContent.includes('x')) {
+        let secondValue = parseFloat(input.textContent.split('x').pop());
+        let firstValue = parseFloat(input.textContent.split('x')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+
+        resultAdd = operate(firstValue, multiply, secondValue);
+     console.log(resultAdd);
+        input.textContent = resultAdd;
+        return resultAdd;
+    }   else if (e.target === equal && input.textContent.includes('/')) {
+        let secondValue = parseFloat(input.textContent.split('/').pop());
+        let firstValue = parseFloat(input.textContent.split('/')[0]);
+        console.log(firstValue);
+        console.log(secondValue);
+        if ( secondValue == 0){
+            alert('that is naughty, it is undefined');
+            window.location.reload();
+        } else {
+        resultAdd = operate(firstValue, divide, secondValue);
+     console.log(resultAdd);
+        input.textContent = resultAdd;
+        return resultAdd;}
+    } else if (e.target === clear) {
+        window.location.reload();
+    }
 }
 
 
