@@ -31,7 +31,7 @@ const subtracter = document.querySelector('#subtract');
 const multiplier = document.querySelector('#multiply');
 const divider = document.querySelector('#divide');
 const clear = document.querySelector('#clear');
-const allClear = document.querySelector('allClear');
+const allClear = document.querySelector('#allClear');
 const decimal = document.querySelector('#decimal');
 const remainder = document.querySelector('#remainder');
 
